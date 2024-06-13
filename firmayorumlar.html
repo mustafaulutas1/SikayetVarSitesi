@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="firmayorumlar.css" /> 
+    <title>Firma Yorumlar</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+
+    
+</head>
+<body>
+  <script src="jquery-ui.min.js"></script>
+  <script src="http://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <header>
+    <nav class="navbar">
+      <span class="hamburger-btn material-symbols-rounded">menu</span>
+
+      <ul class="links">
+        <span class="close-btn material-symbols-rounded">close</span>
+        <a href="firmaanasayfa.html" class="logo">
+          <img src="images/mim-logo-png-transparent.png" alt="logo" />
+
+          <h2>MiM</h2>
+        </a>
+        <li><a href="firmaanasayfa.html">Ana Sayfa</a></li>
+        <li><a href="firmayorumlar.html">Yorumlar</a></li>
+        <li><a href="firmaprofil.html">Profil</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="blur-bg-overlay"></div>
+  <div class="form-popup">
+      <span class="close-btn material-symbols-rounded">close</span>
+  </div>
+    <br><br><br><br><br><br>
+
+    <div id="app">
+        <h1 id="yorumlar">Firma Yorumlar</h1>
+
+        <div id="complaintResponses">
+            <!-- Şikayetler ve cevaplarınız buraya eklenecek -->
+            <div class="complaint-container">
+
+            </div><br>
+            <div class="complaint-container">
+
+            </div><br>
+        </div>
+    </div>
+
+    <script src="firmayorumlar.js"></script> <!-- firmayorumlar.js dosyanızı ekleyin -->
+</body>
+</html>

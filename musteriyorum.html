@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Deneme Sayfası</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="musteriyorum.css" />
+    <script src="musteriyorum.js" defer></script>
+  </head>
+  <body>
+    <script src="jquery-ui.min.js"></script>
+    <script src="http://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <header>
+      <nav class="navbar">
+        <span class="hamburger-btn material-symbols-rounded">menu</span>
+
+        <ul class="links">
+          <span class="close-btn material-symbols-rounded">close</span>
+          <a href="musterianasayfa.html" class="logo">
+            <img src="images/mim-logo-png-transparent.png" alt="logo" />
+
+            <h2>MiM</h2>
+          </a>
+          <li><a href="musterianasayfa.html">Ana Sayfa</a></li>
+          <li><a href="musteriyorumekle.html">Yorum Ekle</a></li>
+          <li><a href="musteriyorum.html">Yorumlar</a></li>
+          <li><a href="musteriprofil.html">Profil</a></li>
+        </ul>
+      </nav>
+    </header>
+    <div class="blur-bg-overlay"></div>
+    <div class="form-popup">
+      <span class="close-btn material-symbols-rounded">close</span>
+    </div>
+    <br /><br /><br />
+
+    <div id="app">
+      <div id="searchContainer">
+        <input type="text" id="complaintSearch" placeholder="Şikayet Ara..." />
+        <button onclick="searchComplaints()">Ara</button>
+      </div>
+      <div id="complaintList"></div>
+    </div>
+
+    <div id="app">
+      <div id="complaintList"></div>
+    </div>
+
+    <script>
+      // Sayfa yüklendiğinde localStorage'daki şikayetleri al ve listele
+      window.onload = function () {
+        document
+          .getElementById("complaintSearch")
+          .addEventListener("input", searchComplaints);
+        const storedComplaints =
+          JSON.parse(localStorage.getItem("complaints")) || [];
+        const complaintList = document.getElementById("complaintList");
+
+        storedComplaints.forEach((complaint, index) => {
+          const complaintElement = document.createElement("div");
+          complaintElement.className = "complaint";
+          complaintElement.innerHTML = `
+                    <p><strong>Şikayet Tarihi:</strong> ${complaint.date}</p>
+                    <p><strong>Şikayet Sahibi:</strong> ${complaint.owner}</p>
+                    <p><strong>Şikayet Açıklaması:</strong> ${complaint.description}</p>
+                    <button onclick="deleteComplaint(${index})">Şikayeti Sil</button>
+                    <button onclick="editComplaint(${index})">Şikayeti Düzenle</button>
+                `;
+          complaintList.appendChild(complaintElement);
+        });
+      };
+
+      function deleteComplaint(index) {
+        const storedComplaints =
+          JSON.parse(localStorage.getItem("complaints")) || [];
+        storedComplaints.splice(index, 1);
+        localStorage.setItem("complaints", JSON.stringify(storedComplaints));
+        refreshComplaintList();
+      }
+
+      function editComplaint(index) {
+        const storedComplaints =
+          JSON.parse(localStorage.getItem("complaints")) || [];
+        const complaintToEdit = storedComplaints[index];
+
+        // Kullanıcıya şikayet bilgilerini düzenlemesi için bir form gösterilebilir
+        const editedDate = prompt(
+          "Şikayet Tarihini Düzenleyin:",
+          complaintToEdit.date
+        );
+        const editedOwner = prompt(
+          "Şikayet Sahibini Düzenleyin:",
+          complaintToEdit.owner
+        );
+        const editedDescription = prompt(
+          "Şikayet Açıklamasını Düzenleyin:",
+          complaintToEdit.description
+        );
+
+        // Kullanıcı "İptal" düğmesine bastıysa veya hiçbir şey girmediyse düzenleme işlemi iptal edilir
+        if (
+          editedDate === null ||
+          editedOwner === null ||
+          editedDescription === null
+        ) {
+          alert("Düzenleme iptal edildi.");
+          return;
+        }
+
+        // Yeni bilgilerle güncellenmiş şikayet objesini oluştur
+        const editedComplaint = {
+          date: editedDate,
+          owner: editedOwner,
+          description: editedDescription,
+        };
+
+        // Şikayeti güncelle
+        storedComplaints[index] = editedComplaint;
+
+        // Güncellenmiş şikayetleri localStorage'e kaydet
+        localStorage.setItem("complaints", JSON.stringify(storedComplaints));
+
+        // Şikayet listesini yenile
+        refreshComplaintList();
+
+        // Kullanıcıya güncelleme yapıldı bilgisi verilebilir
+        alert("Şikayet başarıyla güncellendi.");
+      }
+
+      function searchComplaints() {
+        const searchInput = document
+          .getElementById("complaintSearch")
+          .value.toLowerCase();
+        const storedComplaints =
+          JSON.parse(localStorage.getItem("complaints")) || [];
+        const filteredComplaints = storedComplaints.filter(
+          (complaint) =>
+            complaint.date.toLowerCase().includes(searchInput) ||
+            complaint.owner.toLowerCase().includes(searchInput) ||
+            complaint.description.toLowerCase().includes(searchInput)
+        );
+        displayComplaints(filteredComplaints);
+      }
+
+      function refreshComplaintList() {
+        const complaintList = document.getElementById("complaintList");
+        complaintList.innerHTML = ""; // Temizleme
+
+        const storedComplaints =
+          JSON.parse(localStorage.getItem("complaints")) || [];
+
+        storedComplaints.forEach((complaint, index) => {
+          const complaintElement = document.createElement("div");
+          complaintElement.className = "complaint";
+          complaintElement.innerHTML = `
+                    <p><strong>Şikayet Tarihi:</strong> ${complaint.date}</p>
+                    <p><strong>Şikayet Sahibi:</strong> ${complaint.owner}</p>
+                    <p><strong>Şikayet Açıklaması:</strong> ${complaint.description}</p>
+                    <button onclick="deleteComplaint(${index})">Şikayeti Sil</button>
+                    <button onclick="editComplaint(${index})">Şikayeti Düzenle</button>
+                `;
+          complaintList.appendChild(complaintElement);
+        });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="musteriyorumlar.css" />
+    <title>Şikayetvar Benzeri Site</title>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <span class="hamburger-btn material-symbols-rounded">menu</span>
+
+        <ul class="links">
+          <span class="close-btn material-symbols-rounded">close</span>
+          <a href="musterianasayfa.html" class="logo">
+            <img src="images/mim-logo-png-transparent.png" alt="logo" />
+
+            <h2>MiM</h2>
+          </a>
+          <li><a href="musterianasayfa.html">Ana Sayfa</a></li>
+          <li><a href="musteriyorumlar.html">Yorumlar</a></li>
+          <li><a href="musteriprofil.html">Profil</a></li>
+        </ul>
+      </nav>
+    </header>
+    <br /><br /><br /><br />
+
+    <div id="app">
+      <h1>Şikayetvar</h1>
+
+      <form id="complaintForm">
+        <label for="complaintDate">Şikayet Tarihi:</label>
+        <input type="date" id="complaintDate" required />
+
+        <label for="complaintOwner">Şikayet Sahibi:</label>
+        <input type="text" id="complaintOwner" required />
+
+        <label for="complaintDescription">Şikayet Açıklaması:</label>
+        <textarea id="complaintDescription" required></textarea>
+
+        <button type="button" onclick="addComplaint()">Şikayet Ekle</button>
+      </form>
+
+      <div id="complaintList"></div>
+    </div>
+
+    <script src="musteriyorumlar.js"></script>
+  </body>
+</html>

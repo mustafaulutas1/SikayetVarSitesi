@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="musteriyorumekle.css">
+    <title>Deneme Sayfası</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="musterianasayfa.html" class="logo">
+                <img src="images/mim-logo-png-transparent.png" alt="logo" />
+                <h2>MiM</h2>
+            </a>
+            <ul class="links">
+                <li><a href="musterianasayfa.html">Ana Sayfa</a></li>
+                <li><a href="musteriyorumekle.html">Yorumlar</a></li>
+                <li><a href="musteriprofil.html">Profil</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="app">
+        <h1>Deneme Sayfası</h1>
+        <div id="complaintList"></div>
+    </div>
+
+    <script src="musteriyorumekle.js"></script>
+    <script>
+        // Sayfa yüklendiğinde localStorage'daki şikayetleri al ve listele
+        window.onload = function() {
+            const storedComplaints = JSON.parse(localStorage.getItem('complaints')) || [];
+            const complaintList = document.getElementById('complaintList');
+
+            storedComplaints.forEach(complaint => {
+                const complaintElement = document.createElement('div');
+                complaintElement.className = 'complaint';
+                complaintElement.innerHTML = `
+                    <p><strong>Şikayet Tarihi:</strong> ${complaint.date}</p>
+                    <p><strong>Şikayet Sahibi:</strong> ${complaint.owner}</p>
+                    <p><strong>Şikayet Açıklaması:</strong> ${complaint.description}</p>
+                `;
+                complaintList.appendChild(complaintElement);
+            });
+        };
+    </script>
+</body>
+</html>

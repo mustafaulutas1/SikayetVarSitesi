@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yorum Platformu</title>
+    <!--<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0">-->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="anaSayfa.css" />
+    <script src="anaSayfa.js" defer></script>
+  </head>
+  <body>
+    <script src="jquery-ui.min.js"></script>
+    <script src="http://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <header>
+      <nav class="navbar">
+        <span class="hamburger-btn material-symbols-rounded">menu</span>
+
+        <ul class="links">
+          <span class="close-btn material-symbols-rounded">close</span>
+          <a href="anaSayfa.html" class="logo">
+            <img src="images/mim-logo-png-transparent.png" alt="logo" />
+
+            <h2>MiM</h2>
+          </a>
+          <li><a href="anaSayfa.html">Ana Sayfa</a></li>
+          <li><a href="yorumlar.html">Yorumlar</a></li>
+        </ul>
+        <button class="login-btn">Giriş</button>
+      </nav>
+    </header>
+
+    <div class="blur-bg-overlay"></div>
+    <div class="form-popup">
+      <span class="close-btn material-symbols-rounded">close</span>
+      <div class="form-box login">
+        <div class="form-details">
+          <h2>Hoşgeldiniz</h2>
+          <p>
+            Lütfen mail adresinizi şifrenizi ve hangi tür giriş yapmak istediğinizi seçerek giriş yapınız
+          </p>
+        </div>
+        <div class="form-content">
+          <h2>LOGIN</h2>
+          <form action="#">
+            <div class="input-field">
+              <input type="text" required />
+              <label>Email</label>
+            </div>
+            <div class="input-field">
+              <input type="password" required />
+              <label>Password</label>
+            </div>
+            <div class="controlgroup">
+              <select id="car-type">
+                <option>FİRMA</option>
+                <option>MÜŞTERİ</option>
+              </select>
+            </div>
+            <!--Buraya Firma Müşteri Seçeneği ekle-->
+            <a href="#" class="forgot-pass-link">Şifremi Unuttum?</a>
+            <button type="submit">Log In</button>
+          </form>
+          <div class="bottom-link">
+            Hesabın yok mu?
+            <a href="#" id="signup-link">Hesap Oluştur</a>
+          </div>
+        </div>
+      </div>
+      <div class="form-box signup">
+        <div class="form-details">
+          <h2>Hesap Oluştur</h2>
+          <p>
+            Lütfen bir mail ve şifre oluşturun 
+          </p>
+        </div>
+        <div class="form-content">
+          <h2>Hesap Oluştur</h2>
+          <form action="#">
+            <div class="input-field">
+              <input type="text" required />
+              <label>Enter your email</label>
+            </div>
+            <div class="input-field">
+              <input type="password" required />
+              <label>Create password</label>
+            </div>
+            <div class="policy-text">
+              <input type="checkbox" id="policy" />
+              <label for="policy">
+                Kabul ediyorum
+                <a href="#" class="option">sözleşmeyi</a>
+              </label>
+            </div>
+            <button type="submit">Sign Up</button>
+          </form>
+          <div class="bottom-link">
+            Hesabım zaten var
+            <a href="#" id="login-link">Giriş Yap</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br><br><br><br>
+
+    <!-- <video width="500" height="500" controls >
+      <source src="images/video (1080p).mp4" type="video/mp4">
+    </video> -->
+
+    <img src="images/begeni.png" id="resim">
+    <div class="icerik">
+      <h1 style="color: white;">MIM ile ŞİKAYET ET</h1><br><br>
+
+      <h3 style="color: white;">MIM ile dilediğin şirkete istediğince şikayette bulunabilirsin.</h3>
+      <ol style="color: white;">
+        <li>Ürünün bozuk mu çıktı ŞİKAYET ET</li>
+        <li>Ürünün geç mi eline ulaştı ŞİKAYET ET</li>
+        <li>Sana yanlış ürün mü gönderdiler ŞİKAYET ET</li>
+      </ol>
+      <br><br><br><br><br><br><br><br>
+    
+      <h3 style="color: white;">MIM sana şikayet etme özgürlüğü tanır. Şikayetlerin herkes tarafından görülebilir. Buna dikkat ederek şikayette bulunmalısın</h1>
+    </div>
+    <br />
+  </body>
+</html>
